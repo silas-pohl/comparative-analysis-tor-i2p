@@ -1,0 +1,108 @@
+\documentclass[12pt,conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{dirtytalk}
+\usepackage{url}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{A Comparative Analysis of Privacy, Security and Performance in the TOR and I2P Network}
+
+\author{
+\IEEEauthorblockN{Fernando Manuel Sanfeliz}
+\IEEEauthorblockA{
+\textit{\small{Dept. of Computer and Systems Sci.}}\\
+\textit{\small{Stockholm University}}\\
+\small{Stockholm, Sweden} \\
+\small{fesa6676@student.su.se}}
+\and
+\IEEEauthorblockN{Gustav Mönefors}
+\IEEEauthorblockA{
+\textit{\small{Dept. of Computer and Systems Sci.}}\\
+\textit{\small{Stockholm University}}\\
+\small{Stockholm, Sweden} \\
+\small{gumo9296@student.su.se}}
+\and
+\IEEEauthorblockN{Silas Pohl}
+\IEEEauthorblockA{
+\textit{\small{Dept. of Computer and Systems Sci.}}\\
+\textit{\small{Stockholm University}}\\
+\small{Stockholm, Sweden} \\
+\small{sipo6151@student.su.se}}
+}
+
+\maketitle
+
+\begin{abstract}
+Work in Progress
+\end{abstract}
+
+\begin{IEEEkeywords}
+Darknet, Anonymity Networks, The Onion Router, Tor, Invisible Internet Project, I2P, Onion Routing, Garlic Routing, Latency, Throughput, Network Performance Evaluation
+\end{IEEEkeywords}
+
+\section{Introduction}
+\subsection{Background}
+In today's digital age, characterized by an ever-expanding online presence and the ubiquity of digital communication, concerns over privacy and security have taken center stage. The pervasive collection and exploitation of personal data by governments, corporations, and malicious actors have raised profound questions about individual autonomy, freedom of expression, and the right to privacy. In response to these growing threats, anonymity networks have emerged as crucial mechanisms for protecting digital identities and activities\cite{aComparativeStudyOnAnonymizingNetworks}.
+
+Anonymity networks, such as The Onion Router (TOR)\cite{tor} and the Invisible Internet Project (I2P)\cite{i2p}, offer users the means to navigate the digital realm without fear of surveillance, tracking, or censorship\cite{aSurveyOnTORAndI2P}. These networks achieve anonymity through sophisticated routing mechanisms that obscure the origin and destination of internet traffic, as well as robust encryption protocols that safeguard the confidentiality and integrity of data\cite{aComparativeStudyOnAnonymizingNetworks}.
+
+\subsection{Research Problem}
+Previous studies about anonymity networks have often focused on individual enhancements to the respective network\cite{aReviewOnGarlicRoutingAndArtificialIntelligenceApplicatinsInPublicNetwork} or have uncovered concerns about security and privacy issues\cite{monitoringAnAnonymityNetwork}\cite{convenientDetectionMethodForAnonymousNetworks}. The focus has mostly been on a specific network, making a direct comparison of different networks difficult. Some studies touched on this by comparing anonymity networks such as TOR and I2P, but a comprehensive understanding of the respective advantages and disadvantages in the context of specific use cases remains unclear. Existing research often lacks insights into the specific use cases where one network may outperform the other\cite{TORVsI2P}\cite{aComparativeStudyOnAnonymizingNetworks} or compares specific factors of the networks like performance and scalability \cite{I2PUsabilityVsTORUsability}\cite{aSurveyOnTORAndI2P}. However, a systematic comparative analysis across multiple dimensions, including privacy, security, and performance, that elucidates the nuanced differences between TOR and I2P across various use cases and operational contexts is still lacking. 
+
+\subsection{Research Question}
+In order to make a contribution to closing the aforementioned research problem, the paper will attempt to provide an answer to the following research question:
+\begin{itemize}
+	\item How do the TOR and I2P network compare in terms of privacy, security, and performance?
+\end{itemize}
+Based on the formulated research question, we have derived two closely related sub-research question for each factor to be investigated in order to examine the individual factors (Privacy, Security and Performance) in a methodologically sound manner and finally to combine and evaluate the results to answer the main research question:
+\subsubsection{Privacy}
+\begin{itemize}
+	\item How do the anonymization techniques employed by TOR and I2P differ?
+	\item What are the vulnerabilities associated with each network in preserving user anonymity?
+\end{itemize}
+\subsubsection{Security} 
+\begin{itemize}
+	\item What encryption algorithms and protocols are utilized by TOR and I2P?
+	\item How do they compare in terms of robustness against common attacks? 
+\end{itemize}
+\subsubsection{Performance} 
+\begin{itemize}
+	\item How do TOR and I2P compare in terms of latency of network activities?
+	\item How do TOR and I2P compare in terms of throughput of network activities?
+\end{itemize}
+
+\section{Scientific Base}
+\subsection{TOR and I2P's underlying protocols}
+\subsubsection{Onion Protocol}
+Similar to the layers of an onion, this protocol involves encapsulating messages within many encryption layers and are then “peeled” away as they pass through randomly selected nodes. Utilized by Tor, it is the cornerstone of anonymous communication over the internet\cite{tor}. 
+\subsubsection{Garlic Protocol}
+Employed by the Invisible Internet Project (I2P), this protocol is an extension to the Onion protocol. The main difference is, that Garlic bundles multiple messages together, enhancing efficiency and potentially offering stronger resistance against traffic analysis\cite{i2p}.
+\subsection{Discussion of Previous Research}
+Ranging from Ali et al.'s \say{TOR vs I2P: A Comparative Study} \cite{TORVsI2P} to Hosseini Shirvani, M., \& Akbarifar, A.'s \say{A Comparative Study on Anonymizing Networks: TOR, I2P, and Riffle Networks Comparison} \cite{aComparativeStudyOnAnonymizingNetworks}, both these studies provide in-depth research on the Onion and Garlic protocols and analyze these systems’ methods, vulnerabilities, and efficiencies alongside critical differences shared. Furthermore, \say{A Survey on Tor and I2P} by Conrad and Shirazi \cite{aSurveyOnTORAndI2P} showcases how each protocol adapts to different applications with specification into node selection, performance, and scalability. 
+
+The selection of studies for this thesis was driven by their in-depth analyses and relevance to the network's underlying core functionalities and protocols. The thesis utilises theories of foundational concepts for the onion and garlic protocol in regard to cryptographic privacy and network security. These include concepts of symmetric and asymmetric encryption, both of which are integral to fully comprehend how Tor and I2P maintain anonymity and data integrity. This scientific base lays the groundwork for a detailed exploration of the TOR and I2P networks, aiming to contribute significantly to the field of computer and systems sciences by providing a deeper comparative analysis of these essential privacy technologies.
+
+
+\section{Methodology}
+This study will have a comparative analytical approach to examine the privacy, security, and performance characteristics of TOR and I2P networks. The research will be based on mixed-methods combining both qualitative and quantitative data. 
+
+Firstly, privacy aspects will be analyzed by comparing the anonymization techniques of both networks. This will involve a review of secondary data from existing studies, complemented by experiments to identify vulnerabilities that could compromise user anonymity. 
+
+Secondly for the security analysis, the encryption algorithms and protocols used by each network will be cataloged from academic articles and technical documentation. Their effectiveness will be assessed through simulated attacks to measure their robustness.
+
+Thirdly, the performance metrics latency and throughput, will be measured using controlled experiments where data packets are transmitted through both networks under similar conditions to ensure comparability. These experiments will be conducted in a controlled lab environment, using network simulation tools to mimic realistic internet traffic scenarios. Data analysis will involve statistical testing to compare the networks' performance, and thematic analysis for qualitative data regarding security and privacy. This methodological approach aims to gather how TOR and I2P operate under various scenarios and therefore assist in answering the research questions. 
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,bibliography}
+
+\end{document}
