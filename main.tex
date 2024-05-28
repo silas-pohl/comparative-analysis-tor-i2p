@@ -11,6 +11,7 @@
 \usepackage{dirtytalk}
 \usepackage{url}
 \usepackage{blindtext}
+\usepackage{amsmath}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -116,12 +117,41 @@ The selection of studies for this thesis was driven by their in-depth analyses a
 \subsubsection{Data Collection for Privacy}
 \subsubsection{Data Collection for Security}
 \subsubsection{Data Collection for Performance}
+To compare the performance of the TOR network and the I2P network in terms of latency and throughput, we designed experiments aimed at gathering quantitative data. This chapter details the methodology employed to collect sufficient and reliable data, ensuring consistency and minimising external variations. The primary objective of these experiments was to measure and compare the latency and throughput of the TOR and I2P networks. Latency is defined as the time taken for a data packet to travel from the source to the destination, while throughput refers to the rate at which data is successfully transferred from one point to another within a network. 
+\paragraph{Experimental Setup}
+To ensure consistency in our measurements, we utilised identical hardware (Kali VM) for running both TOR and I2P. Both networks were configured to run their latest stable versions to reflect current performance accurately. The experiments were conducted under similar network conditions, such as the time of day and general network traffic, to minimise external variations that could impact the results.
+\paragraph{Measurement} The measurements were conducted using a Python script designed to access 50 commonly used hidden services (.i2p for I2P and .onion for TOR) to reflect browsing behaviour. Each website was accessed 10 times, resulting in a total of 500 requests per network.
+
+To measure latency, the Python script sent HTTP GET requests to each of the 50 websites. The script recorded the time taken for each website to respond to the request. Specifically, the latency was defined as the duration between the initiation of the request and the receipt of the first byte of the response. This approach provides an accurate measure of the network's responsiveness.
+
+Throughput was measured based on the time required to fully load the website and the size of the content delivered to the client. For each HTTP GET request, the Python script tracked the total amount of data received and the time taken to complete the data transfer. Throughput was then calculated using the formula:
+\[
+\text{Throughput (KB/s)} = \frac{\text{Total Data Received (KB)}}{\text{Total Time Taken (s)}}
+\]
+This calculation provided a clear indication of the network's data transfer capabilities under typical usage conditions. The latency and throughput data for each request were stored in a structured format (CSV) for subsequent analysis.
+
 \subsection{Data Analysis Method}
 \subsubsection{Data Analysis for Privacy}
 \subsubsection{Data Analysis for Security}
 \subsubsection{Data Analysis for Performance}
+The objective of the data analysis is to identify and quantify differences in latency and throughput between the two networks, using various statistical measures and visual representation techniques.
+\paragraph{Data Preprocessing} Before analysis, the raw data collected from the latency and throughput experiments is cleaned and organised. This involves removing data from incomplete requests that could skew results, ensuring consistency in the data format for both networks.
+\paragraph{Statistical Measures}
+To comprehensively compare the performance of TOR and I2P, several key metrics are calculated:
+\begin{enumerate}
+	\item Successful requests (\textit{succ.}) to indicate how many of the 500 requests were successful and thus show how many valid data points the evaluation is based on for each network.
+	\item Average/Mean (\textit{mean}) to provide a central value that represents typical performance, facilitating straightforward comparisons.
+	\item Minimum (\textit{min}) and Maximum (\textit{max}) to help identify the range of performance and the best and worst-case scenarios for each network.
+	\item Standard Deviation (\textit{std\_dev}) to indicate the consistency of network performance; a lower standard deviation signifies more stable performance.
+	\item 90th Percentile (\textit{perc\_90}) to understand the performance distribution and identifying how often high latencies or low throughputs occur.
+\end{enumerate}
+To calculate these metrics, Python and pandas dataframes were used.
+\paragraph{Interpretation and Contextualisation}
+The final step in the data analysis method involves interpreting the results and placing them in context. First we identify key differences by highlighting significant differences in the performance metrics of TOR and I2P and discussing potential reasons for these differences based on network architecture, usage patterns, and technological advancements. And finally we discuss the practical implications of the findings for users of TOR and I2P and provide recommendations based on the comparative analysis, such as which network may be more suitable for specific use cases.
+
 \subsection{Research Ethics}
 
+\newpage
 \section{Results}
 \subsection{Privacy}
 \subsubsection{Utilised Anonymization Techniques}
@@ -130,8 +160,45 @@ The selection of studies for this thesis was driven by their in-depth analyses a
 \subsubsection{Utilised Encryption Algorithms \& Protocols}
 \subsubsection{Robustness Against Common Attacks}
 \subsection{Performance}
-\subsubsection{Latency Results}
-\subsubsection{Throughput Results}
+\subsubsection{Latency Results}The latency experiments involved sending HTTP GET requests to 50 commonly used hidden services on each network, with each website being requested 10 times, totalling 500 requests per network. The table below summarises the key latency metrics in seconds for both networks:
+\begin{table}[h]
+\begin{tabular}{lllllll}
+\textbf{}    & \textbf{succ.} & \textbf{mean} & \textbf{min} & \textbf{max} & \textbf{std\_dev} & \textbf{perc\_90} \\ \hline
+\textbf{I2P} & 479/500        & 0.73          & 0.40         & 60.49        & 2.08              & 0.71              \\
+\textbf{TOR} & 361/500        & 6.02          & 0.59         & 29.96        & 5.81              & 13.36            
+\end{tabular}
+\end{table}
+\\
+The success rate indicates the number of successful HTTP GET requests out of the total 500 attempts. I2P had a higher success rate with 479 successful requests compared to TOR's 361 successful requests. This suggests that I2P is more reliable in terms of successfully retrieving web content from hidden services. This may be due to the selection of hidden services in the respective network (i.e. the selection of the 50 frequently used sites in the Tor network included more websites that are already offline)
+
+The mean latency for I2P was significantly lower at 0.73 seconds compared to TOR's 6.02 seconds. This substantial difference highlights I2P's faster average response time, making it more efficient for accessing web content with lower latency.
+
+The minimum latency recorded for I2P was 0.40 seconds, while TOR's minimum latency was slightly higher at 0.59 seconds. Although both networks showed relatively low minimum latency values, I2P still demonstrated a slight edge in the best-case scenario.
+
+I2P exhibited a much higher maximum latency of 60.49 seconds, indicating occasional extreme delays. In contrast, TOR's maximum latency was 29.96 seconds, which, while still significant, was lower than I2P's maximum. These extreme values highlight potential instability or outlier conditions within the I2P network.
+
+The standard deviation of latency provides insight into the variability of response times. I2P had a standard deviation of 2.08 seconds, whereas TOR's standard deviation was significantly higher at 5.81 seconds. This indicates that TOR's latency is more variable and less consistent compared to I2P.
+
+The 90th percentile latency, which indicates the latency below which 90\% of the HTTP GET requests fall, was 0.71 seconds for I2P and 13.36 seconds for TOR. This further illustrates I2P's superior performance, as the vast majority of its requests experienced low latency, whereas TOR's latency was much higher for a significant portion of requests.
+
+\subsubsection{Throughput Results} The throughput experiments involved sending HTTP GET requests to 50 commonly used hidden services on each network, with each website being requested 10 times, totalling 500 requests per network. The table below summarises the key throughput metrics in kB/s for both networks:
+\begin{table}[h]
+\begin{tabular}{lllllll}
+\textbf{}    & \textbf{succ.} & \textbf{mean} & \textbf{min} & \textbf{max} & \textbf{std\_dev} & \textbf{perc\_90} \\ \hline
+\textbf{I2P} & 479/500        & 9.24          & 0.02         & 436.04        & 34.92              & 4.28              \\
+\textbf{TOR} & 361/500        & 23.31          & 0.02         & 333.35        & 48.90              & 66.60            
+\end{tabular}
+\end{table}
+\\
+The mean throughput for TOR was significantly higher at 23.31 KB/s compared to I2P's 9.24 KB/s. This indicates that, on average, TOR is capable of achieving higher data transfer rates than I2P, making it potentially more suitable for applications requiring higher throughput.
+
+Both I2P and TOR exhibited a minimum throughput of 0.02 KB/s. This indicates that in the worst-case scenarios, both networks can experience extremely low data transfer rates, highlighting occasional performance bottlenecks or network congestion.
+
+I2P exhibited a higher maximum throughput of 436.04 KB/s, while TOR's maximum throughput was 333.35 KB/s. These values indicate that I2P is capable of achieving higher peak data transfer rates under optimal conditions compared to TOR.
+
+The standard deviation of throughput provides insight into the variability of data transfer rates. TOR had a higher standard deviation of 48.90 KB/s compared to I2P's 34.92 KB/s. This suggests that TOR's throughput is more variable and less consistent than I2P's.
+
+The 90th percentile throughput, which indicates the throughput below which 90\% of the HTTP GET requests fall, was 4.28 KB/s for I2P and 66.60 KB/s for TOR. This further illustrates TOR's superior performance in terms of higher throughput for the majority of requests, while I2P's throughput tends to be lower.
 \section{Discussion}
 
 \bibliographystyle{IEEEtran}
