@@ -44,7 +44,7 @@
 \maketitle
 
 \begin{abstract}
-\blindtext %TODO Write abstract at the end
+This paper presents a comparative study of the TOR and I2P networks, focusing on their privacy, security, and performance attributes. TOR uses Onion Routing and robust encryption protocols but is vulnerable to traffic correlation and Sybil attacks. In contrast, I2P employs Garlic Routing, offering enhanced resistance to traffic analysis and lower latency but is susceptible to denial-of-service attacks. Performance comparisons indicate that TOR achieves higher throughput, albeit with greater variability, while I2P provides more consistent and lower latency performance. The discussion highlights the trade-offs between the two networks, suggesting that the choice depends on specific user requirements.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -82,7 +82,11 @@ Based on the formulated research question, we have derived two closely related s
 	\item How do TOR and I2P compare in terms of throughput of network activities?
 \end{itemize}
 \subsection{Delimitations of the Study}
-TODO %TODO Write delimitations of the Study
+There are various delimitations which encompass this study, they stem out of necessity to narrow the scope and guarantee a focused approach towards the privacy, security, and performance metrics of the TOR and I2P networks. Our research primarily utilizes data from secondary sources such as comparative studies, technical documentation, academic journals, however original empirical analysis were done in the performance section and subsequently incorporated into the report. This includes calculations of mean, median, mode, and other statistical measures derived from latency and throughput experiments. The inclusion of this empirical analysis provides a more robust and nuanced understanding of the networks' performance metrics but confines the scope to the specific parameters examined in these experiments.
+
+Additionally, the approach for this study targets key metrics in their respective sub-categories such as privacy (anonymity, pseudonymity, unlinkability, and unobservability), security (encryption algorithms and resistance to common attacks), and performance metrics (latency and throughput). The report exempts other potential features involving broader stability problems and usability, meanwhile no consideration is also had for the impact of emerging technologies on these networks. Furthermore, given there are various possible threat models, the comparative structure of this report focuses only on the aforementioned sub-categories, comprising general characteristics and typical scenarios between TOR and I2P. The comparative analysis employs qualitative methods to identify patterns and insights from the existing literature. This choice aligns with the goals of the research but may limit the generalizability of the findings as the results are context-specific.
+
+ Lastly, while the study aims to provide a thorough and balanced examination of TOR and I2P, it acknowledges that the findings are based on a specific set of metrics and conditions. Any research accomplished in the future could expand on this work through the inclusion of a broader range of metrics, diverse use cases, and further empirical studies to receive a holistic view of these two networks. By outlining these delimitations, the study aims to provide a clear and focused analysis while acknowledging the areas for future research and potential improvements.
 
 \section{Literature Review}
 \subsection{Overview of Tor and I2P Networks}
@@ -124,6 +128,11 @@ Ranging from Ali et al.'s \say{TOR vs I2P: A Comparative Study} \cite{TORVsI2P} 
 The selection of studies for this thesis was driven by their in-depth analyses and relevance to the network's underlying core functionalities and protocols. The thesis utilises theories of foundational concepts for the onion and garlic protocol in regard to cryptographic privacy and network security. These include concepts of symmetric and asymmetric encryption, both of which are integral to fully comprehend how Tor and I2P maintain anonymity and data integrity. This scientific base lays the groundwork for a detailed exploration of the TOR and I2P networks, aiming to contribute significantly to the field of computer and systems sciences by providing a deeper and structured comparative analysis based on the three factors Privacy, Security and Performance of these essential privacy technologies.
 \section{Methodology}
 \subsection{Research Design}
+The research design employs a mixed-methods approach, integrating quantitative performance testing with qualitative examination of the body of current literature. This method enables a deeper understanding of the networks' advantages and disadvantages.
+
+\subsubsection{Qualitative Analysis} To learn more about the privacy and security features of TOR and I2P, a comprehensive analysis of the body of research, technical papers, and comparative studies is conducted. This involves reviewing a wide range of academic and industry literature to understand the underlying architecture and protocols of each network. Case studies and known vulnerabilities help us understand the advantages and disadvantages of TOR and I2P in various situations. 
+
+\subsubsection{Quantitative Analysis} This involves measuring and contrasting the latency and throughput of both networks under controlled circumstances through experimental performance testing. By setting up identical test environments for TOR and I2P, we can systematically measure how each network handles data transmission. To evaluate each network's maximum throughput, average latency, and stability under different loads, we run a number of tests. To guarantee the accuracy and consistency of the results, these tests are conducted several times.
 \subsection{Data Collection Method}
 \subsubsection{Data Collection for Privacy}
 For the privacy section on comparing TOR and I2P, its data will be collected through comprehensive review from existing literature. This will be specifically sourced from academic journals, comparative studies, and relevant sites. Cornerstone works, which delve into foundational comparisons on privacy , such as "A Survey on Tor and I2P" by Conrad and Shirazi \cite{aSurveyOnTORAndI2P}, and "TOR vs I2P: A Comparative Study" by Ali et al. \cite{TORVsI2P} will be utilised. Additionally, technical documents from Tor and I2P will be reviewed to understand their specific protocols and weaknesses. Comparative metrics and prior findings will be extracted from relevant comparative studies such as the one by Akbarifar and Shirvani \cite{aComparativeStudyOnAnonymizingNetworks} to allow precise evaluations of strength and weaknesses of each network in different contexts. 
@@ -182,6 +191,7 @@ To maintain the integrity and validity of our research, we have followed ethical
 	\item Objective and Unbiased Analysis: We took an impartial stance when conducting our comparison analysis, offering a fair assessment of both TOR and I2P networks. In order to ensure a fair and impartial assessment, our debate points bring both the networks' advantages and disadvantages without favouring one over the other.
 	\item Acknowledgment of Sources:  Information and data sources utilised in this study are properly credited, acknowledging the original authors and adding to the body of knowledge on anonymity networks in academia.
 \end{enumerate}
+
 \section{Results}
 \subsection{Privacy}
 \subsubsection{Utilised Anonymization Techniques}
@@ -239,6 +249,30 @@ The standard deviation of throughput provides insight into the variability of da
 
 The 90th percentile throughput, which indicates the throughput below which 90\% of the HTTP GET requests fall, was 4.28 KB/s for I2P and 66.60 KB/s for TOR. This further illustrates TOR's superior performance in terms of higher throughput for the majority of requests, while I2P's throughput tends to be lower.
 \section{Discussion}
+This chapter discusses the findings from our study, comparing the TOR and I2P networks in terms of privacy, security, and performance. Our primary research question is: How do the TOR and I2P networks compare in terms of privacy, security, and performance? To address this, we have derived sub-questions for each factor, which we will explore methodically in the following sections.
+
+\subsection{Privacy}
+TOR uses Onion Routing, which involves wrapping data packets in multiple layers of encryption. Each layer is peeled away by successive nodes, ensuring that no single node knows the entire path of the packet, thereby preserving user anonymity. This method provides robust anonymity but can be vulnerable to certain types of traffic analysis if an adversary can observe both the entry and exit nodes. In contrast, I2P employs Garlic Routing, which bundles multiple messages into a single, encrypted packet. Each message within the bundle can be routed independently, enhancing resistance to traffic analysis. This decentralized approach spreads the routing responsibilities across many nodes, making it more difficult for an adversary to trace individual messages back to their source. The increased complexity of I2P’s routing method can provide superior anonymity in certain scenarios.
+
+TOR’s primary vulnerability lies in its susceptibility to traffic correlation attacks. If an adversary can monitor both the entry and exit points of the network, they can correlate traffic patterns to identify users. The relatively small number of exit nodes also increases the risk of traffic analysis attacks, making it easier for adversaries to perform such correlations. I2P, designed to resist traffic analysis through its dynamic tunnel creation and layered encryption, faces different challenges. Its nodes can be susceptible to denial-of-service (DoS) attacks, which can flood the network, compromising performance and, consequently, anonymity. Both networks also face threats from Sybil attacks, where an adversary controls a large number of nodes to disrupt the network’s integrity. While I2P's decentralized nature provides a layer of resistance, it is not immune to such attacks.
+
+\subsection{Security}
+TOR uses a combination of RSA encryption for session establishment and AES for data encryption within the circuit. This includes the use of Diffie-Hellman for forward secrecy, ensuring that session keys are derived securely and not vulnerable to retroactive decryption. These robust encryption protocols make TOR highly secure against many types of cryptographic attacks. I2P, on the other hand, utilizes ElGamal/AES for end-to-end encryption, with elliptic curve cryptography for signing messages. I2P also employs AES-256 for tunnel encryption, combining Garlic Routing and the Secure Semireliable UDP (SSU) protocol for enhanced security. The use of elliptic curve cryptography provides I2P with an edge in computational efficiency and resistance to future quantum attacks, making it a strong contender in terms of security.
+
+Both TOR and I2P are designed to be robust against many common attacks, yet they each have specific vulnerabilities. TOR’s architecture makes it vulnerable to traffic correlation and Sybil attacks, where adversaries could potentially compromise multiple nodes to analyze traffic patterns and de-anonymize users. I2P’s dynamic tunnel design offers better resistance to traffic analysis but can be vulnerable to DoS attacks that target the network’s capacity. In terms of encryption, both networks employ strong algorithms; however, I2P’s use of more recent elliptic curve cryptography provides a slight edge in terms of computational efficiency and future-proofing against quantum attacks.
+
+\subsection{Performance}
+Our latency experiments indicated that I2P generally offers lower latency compared to TOR. This lower latency is due to I2P’s efficient handling of requests, which translates to faster access to resources and a more responsive user experience. The consistency of I2P’s latency also suggests a more stable performance, making it suitable for applications where timely access to information is critical.
+
+In terms of throughput, TOR demonstrated higher peak data transfer rates but with greater variability. This variability can affect the user experience, particularly in applications requiring consistent data transfer rates. While I2P’s throughput is generally lower, it is more consistent, providing a more predictable performance. This consistency can be advantageous in scenarios where stability is more critical than peak performance.
+
+\subsection{Conclusion}
+In summary, TOR and I2P each have distinct strengths and weaknesses across privacy, security, and performance dimensions. Our study indicates that TOR excels in data transfer rates and provides strong encryption mechanisms but is more susceptible to traffic correlation and Sybil attacks. I2P offers lower latency and more consistent performance, with robust encryption and dynamic routing that enhances privacy. However, it can be vulnerable to DoS attacks.
+
+The choice between TOR and I2P should be guided by the specific requirements of the user, considering the trade-offs in privacy, security, and performance. Future research could explore hybrid models that leverage the strengths of both networks, potentially providing a more comprehensive solution for secure and anonymous communication.
+
+\subsection{Future Research}
+Future research should aim to further compare and validate the findings of this study through diverse methodologies and experimental designs. Comparative studies involving larger and more varied datasets could provide a broader understanding of the performance and security nuances between TOR and I2P. Longitudinal studies observing these networks over extended periods could reveal how they adapt to evolving threats and user demands. Additionally, employing simulation models and real-world testing environments could offer more granular insights into the operational behaviors of both networks under different conditions. By integrating qualitative methods, such as expert interviews and user surveys, researchers could also gather contextual insights into the practical implications of using TOR and I2P, helping to triangulate quantitative data and enhance the robustness of the conclusions. These multifaceted approaches would contribute to a more comprehensive evaluation of these anonymization networks, guiding future enhancements and developments.
 
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,bibliography}
